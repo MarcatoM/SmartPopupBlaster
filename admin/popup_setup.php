@@ -71,6 +71,9 @@ function popup_setup() {
         $bcg_color = get_post_meta(get_the_ID(), "spb_bcg_color", true);
         $overlay_color = get_post_meta(get_the_ID(), "spb_overlay_color", true);
         $overlay_color_opacity = get_post_meta(get_the_ID(), "spb_overlay_opacity", true);
+        $button_color = get_post_meta(get_the_ID(), "spb_button_color", true);
+        $button_color_hover = get_post_meta(get_the_ID(), "spb_button_hover_color", true);
+        $button_text = get_post_meta(get_the_ID(), "spb_button_text", true);
 
         $opacity_value = $overlay_color_opacity / 10;
         $overlay_color_rgba = hex2rgba($overlay_color, $opacity_value);
@@ -117,6 +120,25 @@ function popup_setup() {
             z-index: <?php echo $z_index+1; ?>;
             border-radius: 4px;
             box-shadow: 0 0 5px rgba(0,0,0,0.9);
+        }
+        .close-btn-<?php echo the_ID(); ?>{
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 5px;
+            text-align: center;
+            font-size: 1em;
+            font-family: arial;  
+            background: <?php echo $button_color; ?>;
+            /* border-radius: 100%; */
+            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+        }
+        .close-btn-<?php echo the_ID(); ?>:after{
+            content: '<?php echo $button_text; ?>';
+        }
+        .close-btn-<?php echo the_ID(); ?>:hover {
+            background: <?php echo $button_color_hover; ?>;
         }
 
     </style>

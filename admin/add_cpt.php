@@ -243,6 +243,38 @@ function overlay_box($object){
 
 }
 
+function close_button_box($object){
+    wp_nonce_field(basename(__FILE__), "meta-box-nonce7");
+    $button_color = get_post_meta($object->ID, "spb_button_color", true);
+    $button_color_hover = get_post_meta($object->ID, "spb_button_hover_color", true);
+    $button_text = get_post_meta($object->ID, "spb_button_text", true);
+    if($button_color == ''){
+      $button_color = '#fff';
+    }
+    if($button_color_hover == ''){
+      $button_color_hover = '#fff';
+    }
+    if($button_text == ''){
+      $button_text = 'X';
+    }      
+    ?>
+    <table>
+      <tr>
+        <td><h3>Close Button Color </h3></td>
+        <td><input type="text" id="button_color" name="spb_button_color" value="<?php echo $button_color; ?>" /></td>
+        <td><div id="button_colorpicker"></div></td>
+        <td><h3>Close Button Hover Color </h3></td>
+        <td><input type="text" id="button_color_hover" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" /></td>
+        <td><div id="button_hover_colorpicker"></div></td>
+      </tr>
+      <tr>
+        <td><h3>Close Button Text </h3></td>
+        <td><input type="text" name="spb_button_text" value="<?php echo $button_text; ?>" maxlength="10" /></td>
+      </tr>
+    </table>
+    <?php  
+}
+
 function add_settings_box(){    
     add_meta_box("show_settings_box", "Targeting Conditions", "show_on_box", "spb", "side", "high", null);
     add_meta_box("effect_settings_box", "PopUp Effect", "settings_box", "spb", "side", "high", null);
@@ -250,6 +282,7 @@ function add_settings_box(){
     add_meta_box("bcg_color_settings_box", "PopUp Background Color", "bcg_color_box", "spb", "normal", "high", null);
     add_meta_box("cookie_settings_box", "Set Cookie", "cookie_box", "spb", "side", "high", null);
     add_meta_box("overlay_settings_box", "Overlay Background", "overlay_box", "spb", "normal", "high", null);
+    add_meta_box("close_button_settings_box", "Close Button", "close_button_box", "spb", "normal", "high", null);
 }
 add_action("add_meta_boxes", "add_settings_box");
 
@@ -260,7 +293,8 @@ function save_settings_box($post_id, $post, $update){
         (!isset($_POST["meta-box-nonce3"]) || !wp_verify_nonce($_POST["meta-box-nonce3"], basename(__FILE__))) && 
         (!isset($_POST["meta-box-nonce4"]) || !wp_verify_nonce($_POST["meta-box-nonce4"], basename(__FILE__))) && 
         (!isset($_POST["meta-box-nonce5"]) || !wp_verify_nonce($_POST["meta-box-nonce5"], basename(__FILE__))) && 
-        (!isset($_POST["meta-box-nonce6"]) || !wp_verify_nonce($_POST["meta-box-nonce6"], basename(__FILE__))) ){
+        (!isset($_POST["meta-box-nonce6"]) || !wp_verify_nonce($_POST["meta-box-nonce6"], basename(__FILE__))) && 
+        (!isset($_POST["meta-box-nonce7"]) || !wp_verify_nonce($_POST["meta-box-nonce7"], basename(__FILE__))) ){
          return $post_id;
       }
 
@@ -288,6 +322,10 @@ function save_settings_box($post_id, $post, $update){
     $meta_cookie_value = "";   
     $meta_overlay_color_value = ""; 
     $meta_overlay_opacity_value = "";
+
+    $meta_button_color_value = "";
+    $meta_button_hover_color_value = "";
+    $meta_button_text_value = "";
 
     if(isset($_POST["spb_popup_effect"])){
         $meta_popup_effect_value = $_POST["spb_popup_effect"]; 
@@ -357,6 +395,16 @@ function save_settings_box($post_id, $post, $update){
 
         update_post_meta($post_id, "spb_overlay_color", $meta_overlay_color_value);
         update_post_meta($post_id, "spb_overlay_opacity", $meta_overlay_opacity_value);     
+    }
+
+    if(isset($_POST["spb_button_color"]) && isset($_POST["spb_button_hover_color"]) && isset($_POST["spb_button_text"])){
+        $meta_button_color_value = $_POST["spb_button_color"];
+        $meta_button_hover_color_value = $_POST["spb_button_hover_color"];
+        $meta_button_text_value = $_POST["spb_button_text"];
+
+        update_post_meta($post_id, "spb_button_color", $meta_button_color_value);
+        update_post_meta($post_id, "spb_button_hover_color", $meta_button_hover_color_value);
+        update_post_meta($post_id, "spb_button_text", $meta_button_text_value);    
     }
        
 }
