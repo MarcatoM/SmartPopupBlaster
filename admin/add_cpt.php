@@ -160,18 +160,39 @@ function trigger_box($object){
     <?php
 }
 
-function bcg_color_box($object){
+function content_box($object){
     wp_nonce_field(basename(__FILE__), "meta-box-nonce4");
     $bcg_color = get_post_meta($object->ID, "spb_bcg_color", true);
+
+    $content_padding_lr = get_post_meta($object->ID, "spb_content_padding_lr", true);
+    $content_padding_tb = get_post_meta($object->ID, "spb_content_padding_tb", true);
     if($bcg_color == ''){
       $bcg_color = '#fff';
+    } 
+    if($content_padding_lr == ''){
+      $content_padding_lr = 10;
+    } 
+    if($content_padding_tb == ''){
+      $content_padding_tb = 10;
     }      
     ?>
     <table>
       <tr>
-        <td><h3>Content Background Color </h3></td>
-        <td><input type="text" id="color" name="spb_bcg_color" value="<?php echo $bcg_color; ?>" /></td>
-        <td><div id="colorpicker"></div></td>
+        <td style="width:250px;"><h3>Content Background Color </h3></td>
+        <td><input type="text" id="color" name="spb_bcg_color" value="<?php echo $bcg_color; ?>" style="width:100%;"/><div id="colorpicker"></div></td> 
+        <td style="width:150px;"></td> 
+        <td style="width:250px;">
+        <span><h3>Content Padding Top and Bottom</h3></span> 
+        <span><h3>Content Padding Left and Right</h3></span>
+        </td>
+        <td>
+        <span style="display:block;"><input type="text" name="spb_content_padding_tb" value="<?php echo $content_padding_tb; ?>" size="1" /></span>
+        <span style="display:block;"><input type="text" name="spb_content_padding_lr" value="<?php echo $content_padding_lr; ?>" size="1" /></span>
+        </td>
+        <td>
+        <span style="display:block; margin-bottom:9px;">px</span>
+        <span style="display:block;">px</span>
+        </td>         
       </tr>
     </table>
     <?php
@@ -212,10 +233,10 @@ function overlay_box($object){
     ?>
     <table>
       <tr>
-        <td><h3>Overlay Background Color </h3></td>
-        <td><input type="text" id="overlay_color" name="spb_overlay_color" value="<?php echo $overlay_color; ?>" /></td>
-        <td><div id="overlay_colorpicker"></div></td>
-        <td><h3>Overlay Background Opacity </h3></td>
+        <td style="width:250px;"><h3>Overlay Background Color </h3></td>
+        <td><input type="text" id="overlay_color" name="spb_overlay_color" value="<?php echo $overlay_color; ?>" style="width:100%;"/><div id="overlay_colorpicker"></div></td>  
+        <td style="width:150px;"></td>      
+        <td style="width:250px;"><h3>Overlay Background Opacity </h3></td>        
         <td>
         <select name="spb_overlay_opacity">
           <?php 
@@ -248,6 +269,7 @@ function close_button_box($object){
     $button_color = get_post_meta($object->ID, "spb_button_color", true);
     $button_color_hover = get_post_meta($object->ID, "spb_button_hover_color", true);
     $button_text = get_post_meta($object->ID, "spb_button_text", true);
+    $button_text_color = get_post_meta($object->ID, "spb_button_text_color", true);
     if($button_color == ''){
       $button_color = '#fff';
     }
@@ -256,20 +278,25 @@ function close_button_box($object){
     }
     if($button_text == ''){
       $button_text = 'X';
+    }
+    if($button_text_color == ''){
+      $button_text_color = '#000';
     }      
     ?>
     <table>
       <tr>
-        <td><h3>Close Button Color </h3></td>
-        <td><input type="text" id="button_color" name="spb_button_color" value="<?php echo $button_color; ?>" /></td>
-        <td><div id="button_colorpicker"></div></td>
-        <td><h3>Close Button Hover Color </h3></td>
-        <td><input type="text" id="button_color_hover" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" /></td>
-        <td><div id="button_hover_colorpicker"></div></td>
+        <td style="width:250px;"><h3>Close Button Color </h3></td>
+        <td><input type="text" id="button_color" name="spb_button_color" value="<?php echo $button_color; ?>" style="width:100%;"/><div id="button_colorpicker"></div></td> 
+        <td style="width:150px;"></td>       
+        <td style="width:250px;"><h3>Close Button Hover Color </h3></td>
+        <td><input type="text" id="button_color_hover" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" style="width:100%;"/><div id="button_hover_colorpicker"></div></td>       
       </tr>
       <tr>
-        <td><h3>Close Button Text </h3></td>
+        <td style="width:250px;"><h3>Close Button Text </h3></td>
         <td><input type="text" name="spb_button_text" value="<?php echo $button_text; ?>" maxlength="10" /></td>
+        <td style="width:150px;"></td> 
+        <td style="width:250px;"><h3>Text Color</h3></td>
+        <td><input type="text" id="button_text_color" name="spb_button_text_color" value="<?php echo $button_text_color; ?>" style="width:100%;"/><div id="button_text_colorpicker"></div></td>
       </tr>
     </table>
     <?php  
@@ -279,7 +306,7 @@ function add_settings_box(){
     add_meta_box("show_settings_box", "Targeting Conditions", "show_on_box", "spb", "side", "high", null);
     add_meta_box("effect_settings_box", "PopUp Effect", "settings_box", "spb", "side", "high", null);
     add_meta_box("trigger_settings_box", "PopUp Trigger", "trigger_box", "spb", "side", "high", null);
-    add_meta_box("bcg_color_settings_box", "PopUp Background Color", "bcg_color_box", "spb", "normal", "high", null);
+    add_meta_box("content_settings_box", "PopUp Background Color", "content_box", "spb", "normal", "high", null);
     add_meta_box("cookie_settings_box", "Set Cookie", "cookie_box", "spb", "side", "high", null);
     add_meta_box("overlay_settings_box", "Overlay Background", "overlay_box", "spb", "normal", "high", null);
     add_meta_box("close_button_settings_box", "Close Button", "close_button_box", "spb", "normal", "high", null);
@@ -318,6 +345,8 @@ function save_settings_box($post_id, $post, $update){
     $meta_popup_scroll_trigger_value = "";
     $meta_popup_scroll_value = "";
     $meta_bcg_color_value = "";
+    $meta_conntent_padding_tb_value = "";
+    $meta_conntent_padding_lr_value = "";
     $meta_set_cookie_value = "";
     $meta_cookie_value = "";   
     $meta_overlay_color_value = ""; 
@@ -326,6 +355,7 @@ function save_settings_box($post_id, $post, $update){
     $meta_button_color_value = "";
     $meta_button_hover_color_value = "";
     $meta_button_text_value = "";
+    $meta_button_text_color_value = "";
 
     if(isset($_POST["spb_popup_effect"])){
         $meta_popup_effect_value = $_POST["spb_popup_effect"]; 
@@ -383,10 +413,14 @@ function save_settings_box($post_id, $post, $update){
     }   
     
 
-    if(isset($_POST["spb_bcg_color"])){
-        $meta_bcg_color_value = $_POST["spb_bcg_color"];  
+    if(isset($_POST["spb_bcg_color"]) && isset($_POST["spb_content_padding_tb"]) && isset($_POST["spb_content_padding_lr"])){
+        $meta_bcg_color_value = $_POST["spb_bcg_color"];
+        $meta_conntent_padding_tb_value = $_POST["spb_content_padding_tb"];
+        $meta_conntent_padding_lr_value = $_POST["spb_content_padding_lr"]; 
 
-        update_post_meta($post_id, "spb_bcg_color", $meta_bcg_color_value);     
+        update_post_meta($post_id, "spb_bcg_color", $meta_bcg_color_value);
+        update_post_meta($post_id, "spb_content_padding_tb", $meta_conntent_padding_tb_value);
+        update_post_meta($post_id, "spb_content_padding_lr", $meta_conntent_padding_lr_value);     
     }
 
     if(isset($_POST["spb_overlay_color"]) && isset($_POST["spb_overlay_opacity"]) ){
@@ -397,14 +431,16 @@ function save_settings_box($post_id, $post, $update){
         update_post_meta($post_id, "spb_overlay_opacity", $meta_overlay_opacity_value);     
     }
 
-    if(isset($_POST["spb_button_color"]) && isset($_POST["spb_button_hover_color"]) && isset($_POST["spb_button_text"])){
+    if(isset($_POST["spb_button_color"]) && isset($_POST["spb_button_hover_color"]) && isset($_POST["spb_button_text"]) && isset($_POST["spb_button_text_color"]) ){
         $meta_button_color_value = $_POST["spb_button_color"];
         $meta_button_hover_color_value = $_POST["spb_button_hover_color"];
         $meta_button_text_value = $_POST["spb_button_text"];
+        $meta_button_text_color_value = $_POST["spb_button_text_color"];
 
         update_post_meta($post_id, "spb_button_color", $meta_button_color_value);
         update_post_meta($post_id, "spb_button_hover_color", $meta_button_hover_color_value);
-        update_post_meta($post_id, "spb_button_text", $meta_button_text_value);    
+        update_post_meta($post_id, "spb_button_text", $meta_button_text_value);
+        update_post_meta($post_id, "spb_button_text_color", $meta_button_text_color_value);    
     }
        
 }

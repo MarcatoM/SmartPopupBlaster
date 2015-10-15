@@ -74,6 +74,9 @@ function popup_setup() {
         $button_color = get_post_meta(get_the_ID(), "spb_button_color", true);
         $button_color_hover = get_post_meta(get_the_ID(), "spb_button_hover_color", true);
         $button_text = get_post_meta(get_the_ID(), "spb_button_text", true);
+        $button_text_color = get_post_meta(get_the_ID(), "spb_button_text_color", true);
+        $content_padding_lr = get_post_meta(get_the_ID(), "spb_content_padding_lr", true);
+        $content_padding_tb = get_post_meta(get_the_ID(), "spb_content_padding_tb", true);
 
         $opacity_value = $overlay_color_opacity / 10;
         $overlay_color_rgba = hex2rgba($overlay_color, $opacity_value);
@@ -110,7 +113,7 @@ function popup_setup() {
         .overlay-content-<?php echo the_ID(); ?> {
             display: none;
             background: <?php echo $bcg_color; ?>;
-            padding: 1%;
+            padding: <?php echo $content_padding_tb; ?>px <?php echo $content_padding_lr; ?>px;
             width: 40%;
             position: fixed;
             top: 15%;
@@ -120,7 +123,10 @@ function popup_setup() {
             z-index: <?php echo $z_index+1; ?>;
             border-radius: 4px;
             box-shadow: 0 0 5px rgba(0,0,0,0.9);
-        }
+        } 
+        .overlay-content p:first-child{
+            margin-top: 30px;
+        } 
         .close-btn-<?php echo the_ID(); ?>{
             cursor: pointer;
             position: absolute;
@@ -129,7 +135,8 @@ function popup_setup() {
             padding: 5px;
             text-align: center;
             font-size: 1em;
-            font-family: arial;  
+            font-family: arial;
+            color: <?php echo $button_text_color; ?>;  
             background: <?php echo $button_color; ?>;
             /* border-radius: 100%; */
             box-shadow: 0 0 4px rgba(0,0,0,0.3);
@@ -140,7 +147,21 @@ function popup_setup() {
         .close-btn-<?php echo the_ID(); ?>:hover {
             background: <?php echo $button_color_hover; ?>;
         }
-
+        /* media query for most mobile devices */
+        @media only screen and (min-width: 480px) and (max-width: 980px){         
+            .overlay-content-<?php echo the_ID(); ?> {
+                width: 70%;
+                margin: 0 15%;
+                left: 0;
+            }
+        }
+        @media only screen and (min-width: 0px) and (max-width: 480px){         
+            .overlay-content-<?php echo the_ID(); ?> {
+                width: 96%;
+                margin: 0 2%;
+                left: 0;
+            }
+        }
     </style>
 
     <div id="spb-popup-<?php the_ID(); ?>" class="overlay-bg overlay-bg-<?php the_ID(); ?> <?php echo $trigger; ?>" data-id="<?php echo $the_post_id; ?>" data-effect="<?php echo $effect; ?>" data-delay="<?php echo $delay_value; ?>" data-scroll="<?php echo $scroll_value; ?>" data-cookie="<?php echo $cookie_value; ?>"></div>

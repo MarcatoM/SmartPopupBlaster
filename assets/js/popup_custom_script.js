@@ -56,5 +56,6 @@ jQuery(document).ready(function() {
    jQuery('#overlay_colorpicker').farbtastic('#overlay_color');
    jQuery('#button_colorpicker').farbtastic('#button_color');
    jQuery('#button_hover_colorpicker').farbtastic('#button_color_hover');
+   jQuery('#button_text_colorpicker').farbtastic('#button_text_color');
 
 });

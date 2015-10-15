@@ -133,7 +133,6 @@ function sub_spb_init($object) {
 
 
   */
-	
 }
 
 ?>

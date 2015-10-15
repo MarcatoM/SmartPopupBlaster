@@ -52,9 +52,9 @@
 .close-btn:hover {
     background: #05abe0;
 }
-*/
+
  
-/* media query for most mobile devices */
+/* media query for most mobile devices *//*
 @media only screen and (min-width: 0px) and (max-width: 480px){
  
     .overlay-content {
@@ -63,3 +63,4 @@
         left: 0;
     }
 }
+*/
