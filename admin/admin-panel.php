@@ -8,10 +8,10 @@ add_action('admin_menu', 'spb');
  
 function spb(){
         // add_menu_page( 'Smart PopUp Blaster', 'Smart PopUp Blaster', 'manage_options', 's-popup-b', 'spb_init','dashicons-megaphone',30 );
-        add_submenu_page( 'edit.php?post_type=spb', 'Settings', 'Settings', 'manage_options', 'submenu-handle', 'sub_spb_init');
+        add_submenu_page( 'edit.php?post_type=spb', 'Help', 'Help', 'manage_options', 'submenu-handle', 'sub_spb_init');
 
 }
- 
+/* 
 function spb_init(){
         if ( !current_user_can( 'manage_options' ) )  {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
@@ -21,9 +21,15 @@ function spb_init(){
 		echo '<h1>Here is where the form would go if I actually had options.</h1>';
 		echo '</div>';
 }
-
+*/
 // sub_spb_init() displays the page content for the Test settings submenu
 function sub_spb_init($object) {
+
+    echo '<div class="wrap">';
+    echo '<h1>Help Section...</h1>';
+    echo '</div>';
+
+  /*
 
     //must check that the user has the required capability 
     if (!current_user_can('manage_options'))
@@ -124,6 +130,9 @@ function sub_spb_init($object) {
 	var_dump($show_exclude_homepage);
  
 	endwhile;
+
+
+  */
 	
 }
 
