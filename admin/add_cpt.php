@@ -306,7 +306,7 @@ function add_settings_box(){
     add_meta_box("show_settings_box", "Targeting Conditions", "show_on_box", "spb", "side", "high", null);
     add_meta_box("effect_settings_box", "PopUp Effect", "settings_box", "spb", "side", "high", null);
     add_meta_box("trigger_settings_box", "PopUp Trigger", "trigger_box", "spb", "side", "high", null);
-    add_meta_box("content_settings_box", "PopUp Background Color", "content_box", "spb", "normal", "high", null);
+    add_meta_box("content_settings_box", "PopUp Content", "content_box", "spb", "normal", "high", null);
     add_meta_box("cookie_settings_box", "Set Cookie", "cookie_box", "spb", "side", "high", null);
     add_meta_box("overlay_settings_box", "Overlay Background", "overlay_box", "spb", "normal", "high", null);
     add_meta_box("close_button_settings_box", "Close Button", "close_button_box", "spb", "normal", "high", null);
