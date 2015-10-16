@@ -2,7 +2,7 @@
 /*
 Plugin Name: Smart PopUp Blaster
 Plugin URI: http://wordpress.org/plugins/smart-popup-blaster/
-Description: This is the smartes PopUp plugin
+Description: Easily create & style popups with any content. Theme editor to quickly style your popups. Add forms, social media boxes, videos & more.
 Author: Marin Matosevic
 Version: 0.1
 Author URI: http://www.google.com
@@ -16,8 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 include 'admin/add_cpt.php';
 include 'admin/admin-panel.php';
 
-function styles_and_scripts() {
-	wp_enqueue_style('popup-style', plugins_url( '/assets/css/popup-style.css' , __FILE__ ));
+function styles_and_scripts() {	
 	wp_enqueue_style('animation-style', plugins_url( '/assets/css/animation.css' , __FILE__ ));
 
 	wp_enqueue_script('popup-script', plugins_url( '/assets/js/popup-script.js' , __FILE__ ), array('jquery'), '1.0', true);
@@ -34,11 +33,10 @@ function popup_custom_script() {
     if( 'spb' == $post_type ){
     wp_enqueue_style('jquery-ui');	
     wp_enqueue_style('jquery-styles', plugins_url( '/assets/css/jquery-ui.css', __FILE__ ));	
-    		
-    wp_enqueue_style('farbtastic');    	
-    wp_enqueue_script('farbtastic');
+    wp_enqueue_script('jquery-ui-slider');
+    wp_enqueue_style( 'wp-color-picker' );  
+    wp_enqueue_script( 'wp-color-picker');
 
-    wp_enqueue_script('jquery-ui-slider');	
     wp_enqueue_script( 'popup_custom_script', plugins_url( '/assets/js/popup_custom_script.js', __FILE__ ), array('jquery'), '1.0', true);      
 	}
 }

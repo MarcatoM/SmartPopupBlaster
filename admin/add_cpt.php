@@ -179,22 +179,27 @@ function content_box($object){
     <table>
       <tr>
         <td style="width:250px;"><h3>Content Background Color </h3></td>
-        <td><input type="text" id="color" name="spb_bcg_color" value="<?php echo $bcg_color; ?>" style="width:100%;"/><div id="colorpicker"></div></td> 
+        <td><input type="text" class="color-field" name="spb_bcg_color" value="<?php echo $bcg_color; ?>" /><div class="clear"></div></td> 
         <td style="width:150px;"></td> 
         <td style="width:250px;">
         <span><h3>Content Padding Top and Bottom</h3></span> 
         <span><h3>Content Padding Left and Right</h3></span>
         </td>
         <td>
-        <span style="display:block;"><input type="text" name="spb_content_padding_tb" value="<?php echo $content_padding_tb; ?>" size="1" /></span>
-        <span style="display:block;"><input type="text" name="spb_content_padding_lr" value="<?php echo $content_padding_lr; ?>" size="1" /></span>
-        </td>
-        <td>
-        <span style="display:block; margin-bottom:9px;">px</span>
-        <span style="display:block;">px</span>
-        </td>         
+        <span style="display:block; margin-bottom:7px;"><input type="text" name="spb_content_padding_tb" value="<?php echo $content_padding_tb; ?>" size="1" /> px</span>
+        <span style="display:block;"><input type="text" name="spb_content_padding_lr" value="<?php echo $content_padding_lr; ?>" size="1" /> px</span>
+        </td>               
       </tr>
     </table>
+
+    <script>
+      (function( $ ) {
+        // Add Color Picker to all inputs that have 'color-field' class
+        $(function() {
+        $('.color-field').wpColorPicker();
+        });
+      })( jQuery );
+    </script>
     <?php
 }
 
@@ -234,7 +239,7 @@ function overlay_box($object){
     <table>
       <tr>
         <td style="width:250px;"><h3>Overlay Background Color </h3></td>
-        <td><input type="text" id="overlay_color" name="spb_overlay_color" value="<?php echo $overlay_color; ?>" style="width:100%;"/><div id="overlay_colorpicker"></div></td>  
+        <td><input type="text" class="color-field" name="spb_overlay_color" value="<?php echo $overlay_color; ?>" /><div class="clear"></div></td>  
         <td style="width:150px;"></td>      
         <td style="width:250px;"><h3>Overlay Background Opacity </h3></td>        
         <td>
@@ -286,17 +291,17 @@ function close_button_box($object){
     <table>
       <tr>
         <td style="width:250px;"><h3>Close Button Color </h3></td>
-        <td><input type="text" id="button_color" name="spb_button_color" value="<?php echo $button_color; ?>" style="width:100%;"/><div id="button_colorpicker"></div></td> 
+        <td><input type="text" class="color-field" name="spb_button_color" value="<?php echo $button_color; ?>" /><div class="clear"></div></td> 
         <td style="width:150px;"></td>       
         <td style="width:250px;"><h3>Close Button Hover Color </h3></td>
-        <td><input type="text" id="button_color_hover" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" style="width:100%;"/><div id="button_hover_colorpicker"></div></td>       
+        <td><input type="text" class="color-field" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" /><div class="clear"></div></td>       
       </tr>
       <tr>
         <td style="width:250px;"><h3>Close Button Text </h3></td>
         <td><input type="text" name="spb_button_text" value="<?php echo $button_text; ?>" maxlength="10" /></td>
         <td style="width:150px;"></td> 
         <td style="width:250px;"><h3>Text Color</h3></td>
-        <td><input type="text" id="button_text_color" name="spb_button_text_color" value="<?php echo $button_text_color; ?>" style="width:100%;"/><div id="button_text_colorpicker"></div></td>
+        <td><input type="text" class="color-field" name="spb_button_text_color" value="<?php echo $button_text_color; ?>" /><div class="clear"></div></td>
       </tr>
     </table>
     <?php  
