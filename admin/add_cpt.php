@@ -211,6 +211,9 @@ function content_box($object){
         </td> 
       </tr>
       <tr>
+        <td colspan="4" style="padding-top:30px;"></td>
+      </tr>
+      <tr>
         <td style="width:250px;"><h3>Box Shadow Color </h3></td>
         <td><input type="text" class="color-field" name="spb_content_box_shadow_color" value="<?php echo $content_box_shadow_color; ?>" /><div class="clear"></div></td>
       </tr>        
@@ -353,15 +356,15 @@ function close_button_box($object){
       <tr>
         <td style="width:250px;"><h3>Close Button Color </h3></td>
         <td><input type="text" class="color-field" name="spb_button_color" value="<?php echo $button_color; ?>" /><div class="clear"></div></td> 
-        <td style="width:150px;"></td>       
-        <td style="width:250px;"><h3>Close Button Hover Color </h3></td>
-        <td><input type="text" class="color-field" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" /><div class="clear"></div></td>       
+        <td style="width:150px;"></td>  
+        <td style="width:250px;"><h3>Close Button Text </h3></td>
+        <td><input type="text" name="spb_button_text" value="<?php echo $button_text; ?>" maxlength="10" /></td>               
       </tr>
       <tr>
-        <td style="width:250px;"><h3>Close Button Text </h3></td>
-        <td><input type="text" name="spb_button_text" value="<?php echo $button_text; ?>" maxlength="10" /></td>
+        <td style="width:250px;"><h3>Close Button Hover Color </h3></td>
+        <td><input type="text" class="color-field" name="spb_button_hover_color" value="<?php echo $button_color_hover; ?>" /><div class="clear"></div></td>
         <td style="width:150px;"></td> 
-        <td style="width:250px;"><h3>Text Color</h3></td>
+        <td style="width:250px;"><h3>Close Button Text Color</h3></td>
         <td><input type="text" class="color-field" name="spb_button_text_color" value="<?php echo $button_text_color; ?>" /><div class="clear"></div></td>
       </tr>
     </table>

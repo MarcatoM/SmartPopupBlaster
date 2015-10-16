@@ -32,7 +32,9 @@ function popup_custom_script() {
     global $post_type;
     if( 'spb' == $post_type ){
     wp_enqueue_style('jquery-ui');	
-    wp_enqueue_style('jquery-styles', plugins_url( '/assets/css/jquery-ui.css', __FILE__ ));	
+    wp_enqueue_style('jquery-styles', plugins_url( '/assets/css/jquery-ui.css', __FILE__ )); /* fallback */
+      wp_register_style('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
+  	wp_enqueue_style( 'jquery-ui' );	
     wp_enqueue_script('jquery-ui-slider');
     wp_enqueue_style( 'wp-color-picker' );  
     wp_enqueue_script( 'wp-color-picker');
