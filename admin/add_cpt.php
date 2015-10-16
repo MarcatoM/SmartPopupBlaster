@@ -163,9 +163,14 @@ function trigger_box($object){
 function content_box($object){
     wp_nonce_field(basename(__FILE__), "meta-box-nonce4");
     $bcg_color = get_post_meta($object->ID, "spb_bcg_color", true);
-
     $content_padding_lr = get_post_meta($object->ID, "spb_content_padding_lr", true);
     $content_padding_tb = get_post_meta($object->ID, "spb_content_padding_tb", true);
+    $content_box_shadow_horizontal = get_post_meta($object->ID, "spb_content_box_shadow_horizontal", true);
+    $content_box_shadow_vertical = get_post_meta($object->ID, "spb_content_box_shadow_vertical", true);
+    $content_box_shadow_spread = get_post_meta($object->ID, "spb_content_box_shadow_spread", true);
+    $content_box_shadow_color = get_post_meta($object->ID, "spb_content_box_shadow_color", true);
+    $content_box_shadow_opacity = get_post_meta($object->ID, "spb_content_box_shadow_opacity", true);
+
     if($bcg_color == ''){
       $bcg_color = '#fff';
     } 
@@ -174,6 +179,21 @@ function content_box($object){
     } 
     if($content_padding_tb == ''){
       $content_padding_tb = 10;
+    }
+    if($content_box_shadow_horizontal == ''){
+      $content_box_shadow_horizontal = 0;
+    } 
+    if($content_box_shadow_vertical == ''){
+      $content_box_shadow_vertical = 0;
+    }
+    if($content_box_shadow_spread == ''){
+      $content_box_shadow_spread = 5;
+    }
+    if($content_box_shadow_color == ''){
+      $content_box_shadow_color = '#000';
+    }
+    if($content_box_shadow_opacity == ''){
+      $content_box_shadow_opacity = 9;
     }      
     ?>
     <table>
@@ -188,8 +208,49 @@ function content_box($object){
         <td>
         <span style="display:block; margin-bottom:7px;"><input type="text" name="spb_content_padding_tb" value="<?php echo $content_padding_tb; ?>" size="1" /> px</span>
         <span style="display:block;"><input type="text" name="spb_content_padding_lr" value="<?php echo $content_padding_lr; ?>" size="1" /> px</span>
-        </td>               
+        </td> 
       </tr>
+      <tr>
+        <td style="width:250px;"><h3>Box Shadow Color </h3></td>
+        <td><input type="text" class="color-field" name="spb_content_box_shadow_color" value="<?php echo $content_box_shadow_color; ?>" /><div class="clear"></div></td>
+      </tr>        
+      <tr>     
+        <td style="width:250px;"><h3>Box Shadow Opacity </h3></td>        
+        <td>
+        <select name="spb_content_box_shadow_opacity">
+          <?php 
+              $content_box_shadow_opacity = get_post_meta($object->ID, "spb_content_box_shadow_opacity", true);
+              if($content_box_shadow_opacity == ""){
+                $content_box_shadow_opacity = 9;
+              }
+              for ($i=1; $i < 11; $i++) { 
+                if($i == $content_box_shadow_opacity){
+                      ?>
+                          <option selected><?php echo $content_box_shadow_opacity; ?></option>
+                      <?php    
+                  }else{
+                      ?>
+                          <option><?php echo $i; ?></option>
+                      <?php
+                  }
+              }                     
+          ?>
+        </select>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:250px;"><h3>Box Shadow Spread </h3></td>
+        <td><input type="text" name="spb_content_box_shadow_spread" value="<?php echo $content_box_shadow_spread; ?>" size="1" /> px</td>
+      </tr>
+      <tr>
+        <td style="width:250px;"><h3>Box Shadow Horizontal Spread </h3></td>
+        <td><input type="text" name="spb_content_box_shadow_horizontal" value="<?php echo $content_box_shadow_horizontal; ?>" size="1" /> px</td>
+      </tr>
+      <tr>
+        <td style="width:250px;"><h3>Box Shadow Vertical Spread </h3></td>
+        <td><input type="text" name="spb_content_box_shadow_vertical" value="<?php echo $content_box_shadow_vertical; ?>" size="1" /> px</td>
+      </tr>
+      
     </table>
 
     <script>
@@ -352,11 +413,15 @@ function save_settings_box($post_id, $post, $update){
     $meta_bcg_color_value = "";
     $meta_conntent_padding_tb_value = "";
     $meta_conntent_padding_lr_value = "";
+    $meta_conntent_box_shadow_color = "";
+    $meta_conntent_box_shadow_opacity = "";
+    $meta_conntent_box_shadow_spread = "";
+    $meta_conntent_box_shadow_spread_horizontal = "";
+    $meta_conntent_box_shadow_spread_vertical = "";
     $meta_set_cookie_value = "";
     $meta_cookie_value = "";   
     $meta_overlay_color_value = ""; 
     $meta_overlay_opacity_value = "";
-
     $meta_button_color_value = "";
     $meta_button_hover_color_value = "";
     $meta_button_text_value = "";
@@ -415,17 +480,36 @@ function save_settings_box($post_id, $post, $update){
           update_post_meta($post_id, "spb_set_cookie", ""); 
           update_post_meta($post_id, "spb_cookie_value", "");
         }       
-    }   
-    
+    }  
 
-    if(isset($_POST["spb_bcg_color"]) && isset($_POST["spb_content_padding_tb"]) && isset($_POST["spb_content_padding_lr"])){
+    if( isset($_POST["spb_bcg_color"]) && 
+        isset($_POST["spb_content_padding_tb"]) && 
+        isset($_POST["spb_content_padding_lr"]) && 
+        isset($_POST["spb_content_box_shadow_color"]) && 
+        isset($_POST["spb_content_box_shadow_opacity"]) && 
+        isset($_POST["spb_content_box_shadow_vertical"]) && 
+        isset($_POST["spb_content_box_shadow_horizontal"]) && 
+        isset($_POST["spb_content_box_shadow_spread"]) ){
+
         $meta_bcg_color_value = $_POST["spb_bcg_color"];
         $meta_conntent_padding_tb_value = $_POST["spb_content_padding_tb"];
         $meta_conntent_padding_lr_value = $_POST["spb_content_padding_lr"]; 
 
+        $meta_conntent_box_shadow_color = $_POST["spb_content_box_shadow_color"];
+        $meta_conntent_box_shadow_opacity = $_POST["spb_content_box_shadow_opacity"];
+        $meta_conntent_box_shadow_spread = $_POST["spb_content_box_shadow_vertical"];
+        $meta_conntent_box_shadow_spread_horizontal = $_POST["spb_content_box_shadow_horizontal"];
+        $meta_conntent_box_shadow_spread_vertical = $_POST["spb_content_box_shadow_spread"];
+
         update_post_meta($post_id, "spb_bcg_color", $meta_bcg_color_value);
         update_post_meta($post_id, "spb_content_padding_tb", $meta_conntent_padding_tb_value);
-        update_post_meta($post_id, "spb_content_padding_lr", $meta_conntent_padding_lr_value);     
+        update_post_meta($post_id, "spb_content_padding_lr", $meta_conntent_padding_lr_value);
+
+        update_post_meta($post_id, "spb_content_box_shadow_color", $meta_conntent_box_shadow_color);
+        update_post_meta($post_id, "spb_content_box_shadow_opacity", $meta_conntent_box_shadow_opacity);
+        update_post_meta($post_id, "spb_content_box_shadow_vertical", $meta_conntent_box_shadow_spread);
+        update_post_meta($post_id, "spb_content_box_shadow_horizontal", $meta_conntent_box_shadow_spread_horizontal);
+        update_post_meta($post_id, "spb_content_box_shadow_spread", $meta_conntent_box_shadow_spread_vertical);     
     }
 
     if(isset($_POST["spb_overlay_color"]) && isset($_POST["spb_overlay_opacity"]) ){

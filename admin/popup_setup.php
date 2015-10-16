@@ -78,8 +78,18 @@ function popup_setup() {
         $content_padding_lr = get_post_meta(get_the_ID(), "spb_content_padding_lr", true);
         $content_padding_tb = get_post_meta(get_the_ID(), "spb_content_padding_tb", true);
 
+        $content_box_shadow_horizontal = get_post_meta(get_the_ID(), "spb_content_box_shadow_horizontal", true);
+        $content_box_shadow_vertical = get_post_meta(get_the_ID(), "spb_content_box_shadow_vertical", true);
+        $content_box_shadow_spread = get_post_meta(get_the_ID(), "spb_content_box_shadow_spread", true);
+        $content_box_shadow_color = get_post_meta(get_the_ID(), "spb_content_box_shadow_color", true);
+        $content_box_shadow_opacity = get_post_meta(get_the_ID(), "spb_content_box_shadow_opacity", true);
+
         $opacity_value = $overlay_color_opacity / 10;
         $overlay_color_rgba = hex2rgba($overlay_color, $opacity_value);
+
+        $box_shadow_opacity_value = $overlay_color_opacity / 10;
+        $box_shadow_color_rgba = hex2rgba($content_box_shadow_color, $box_shadow_opacity_value);
+        $box_shadow = $content_box_shadow_horizontal.'px '.$content_box_shadow_vertical.'px '.$content_box_shadow_spread.'px '.$box_shadow_color_rgba;
 
         if($popup_trigger == "time"){
             $trigger = "spb-delay";
@@ -122,7 +132,8 @@ function popup_setup() {
             cursor: default;
             z-index: <?php echo $z_index+1; ?>;
             border-radius: 4px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.9);
+            box-shadow: 0 0 5px rgba(0,0,0,0.9); /* fallback */
+            box-shadow: <?php echo $box_shadow; ?>;
         } 
         .overlay-content p:first-child{
             margin-top: 30px;
