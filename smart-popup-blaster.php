@@ -43,7 +43,6 @@ function popup_custom_script() {
 	}
 }
 
-
 add_action( 'wp_ajax_nopriv_popup_effect', 'popup_effect' );
 add_action( 'wp_ajax_popup_effect', 'popup_effect' );
 
@@ -61,6 +60,19 @@ function popup_effect() {
 
 	wp_send_json($data_response);
 	die();
+}
+
+
+add_action( 'wp_enqueue_scripts', 'theme_custom_style_script', 11 );
+function theme_custom_style_script() {
+    wp_enqueue_style( 'dynamic-css', admin_url('admin-ajax.php').'?action=dynamic_css', '', VERSION);
+}
+add_action('wp_ajax_dynamic_css', 'dynamic_css');
+add_action('wp_ajax_nopriv_dynamic_css', 'dynamic_css');
+function dynamic_css() {
+    //require( plugins_url('/assets/css/custom.css.php') );   
+    require(plugin_dir_path( __FILE__ ).'/assets/css/custom.css.php'); 
+    exit;
 }
 
 include 'admin/popup_setup.php';	
