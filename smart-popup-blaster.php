@@ -2,10 +2,10 @@
 /*
 Plugin Name: Smart PopUp Blaster
 Plugin URI: http://wordpress.org/plugins/smart-popup-blaster/
-Description: Easily create & style popups with any content. Theme editor to quickly style your popups. Add forms, social media boxes, videos & more.
-Author: Marin Matosevic
-Version: 0.1
-Author URI: http://www.google.com
+Description: Elegant & easy to use popup plugin, fully responsive, highly customizable, scroll, click & time-delay triggered popups, Add forms, social media boxes, videos & more.
+Author: MarcatoM
+Version: 1.0
+Author URI: http://marcatom.xyz
 */
 
 // Exit if accessed directly
