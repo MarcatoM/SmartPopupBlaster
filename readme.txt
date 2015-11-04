@@ -8,8 +8,7 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Elegant & easy to use popup plugin, fully-responsive, highly customizable, scroll, click & time-delay triggered popups, Add forms, social media boxes, videos & more.
-
+Easy to use popup plugin, highly customizable, scroll, click & time-delay triggered popups. Add forms, social media boxes, videos & more.
 
 == Description ==
 
@@ -40,8 +39,12 @@ See help page in popup admin panel
 == Changelog ==
 
 = 1.0 =
-* First Launch / Initial release
+* Initial release
 
+== Upgrade Notice ==
+
+= 1.0. =
+* First Launch
 
 == A brief Markdown Example ==
 
