@@ -75,7 +75,7 @@ function settings_box($object){
       <label for="spb_popup_effect"><?php _e("PopUp Effect: ", 'popup_settings' ); ?></label>
       <select name="spb_popup_effect">
           <?php 
-              $option_values = array('bounce', 'flash', 'pulse', 'shake', 'swing', 'tada', 'wobble', 'bounceIn' );
+              $option_values = array('bounce', 'bounceIn', 'flash', 'pulse', 'shake', 'swing', 'tada', 'wobble' );
               foreach($option_values as $key => $value){
                   if($value == get_post_meta($object->ID, "spb_popup_effect", true)){
                       ?>
