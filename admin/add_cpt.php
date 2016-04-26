@@ -95,6 +95,7 @@ function settings_box($object){
                 'tada', 
                 'wobble' 
                 );
+
               foreach($option_values as $key => $value){
                   if($value == get_post_meta($object->ID, "spb_popup_effect", true)){
                       ?>
@@ -186,8 +187,7 @@ function trigger_box($object){
         <td>%</td>
       </tr>
     </table> 
-    <p id="scroll-help" style="background-color:#F1F1F1;padding:4px;<?php if ($popup_trigger !== 'scroll'){echo 'display:none;';} ?>"><small><strong>Lower percentage:</strong> bottom of the page </br><strong>Higher percentage:</strong> top of the page</small></p>
-    
+    <p id="scroll-help" style="background-color:#F1F1F1;padding:4px;<?php if ($popup_trigger !== 'scroll'){echo 'display:none;';} ?>"><small><strong>Lower percentage:</strong> bottom of the page </br><strong>Higher percentage:</strong> top of the page</small></p>    
 
     <?php
 }
@@ -483,7 +483,7 @@ function save_settings_box($post_id, $post, $update){
 
     if(isset($_POST["spb_popup_trigger"]) && (isset($_POST["spb_popup_delay_value"]) || isset($_POST["spb_popup_scroll_value"])) ){
 
-        $meta_popup_trigger_value = $_POST["spb_popup_trigger"];         
+        $meta_popup_trigger_value = $_POST["spb_popup_trigger"]; 
         $meta_popup_delay_value = $_POST["spb_popup_delay_value"];
         $meta_popup_scroll_value = $_POST["spb_popup_scroll_value"]; 
 

@@ -105,11 +105,13 @@ jQuery( document ).on( 'click', '.show-popup', function() {
 
 
 
+
 var popup_data = []; 
 var popup_data_e = []; 
 var popup_data_s = []; 
 
 var spb_exit_intent = document.getElementsByClassName('spb-exit_intent');
+
 var spb_delay = document.getElementsByClassName('spb-delay');
 var spb_scroll = document.getElementsByClassName('spb-scroll');  
 
@@ -196,6 +198,7 @@ function popup_on_delay(stop,exclude){
         }
     };
 }
+
 
 checkCookie_e();
 checkCookie_d();

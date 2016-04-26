@@ -64,7 +64,9 @@ function popup_effect() {
 
 add_action( 'wp_enqueue_scripts', 'spb_custom_style_script', 11 );
 function spb_custom_style_script() {
+
     wp_enqueue_style( 'spb_dynamic-css', admin_url('admin-ajax.php').'?action=spb_dynamic_css', '', '1.0');
+
 }
 add_action('wp_ajax_spb_dynamic_css', 'spb_dynamic_css');
 add_action('wp_ajax_nopriv_spb_dynamic_css', 'spb_dynamic_css');
@@ -74,6 +76,7 @@ function spb_dynamic_css() {
 }
 
 include 'admin/popup_setup.php';	
+
 
 
 add_filter( 'plugin_action_links', 'spb_add_action_plugin', 10, 5 );

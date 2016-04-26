@@ -31,7 +31,6 @@ With this fully-responsive plugin, your pop-ups will look fantastic on every dev
 * Display any shortcode in popup
 
 
-
 == Installation ==
 
 1. Upload `smart-popup-blaster` to the `/wp-content/plugins/` directory
@@ -81,10 +80,10 @@ See help page in popup admin panel
 = 1.0. =
 * First Launch
 
- 
 == Additional Info ==
 
 **Idea Behind / Philosophy:** Just a little leightweight plugin for all WordPress users out there to make their popups look better. I'll try to add more plugin/theme support and more plugin option over time. So stay tuned.
 
 == Credits ==
 * Thanx to [MarcatoM](http://marcatom.xyz) for the development! 
+
