@@ -101,8 +101,10 @@ function hex2rgba($color, $opacity = false) {
    
        .overlay-bg-<?php echo the_ID(); ?> {
            display: none;
-           position: absolute;
+           position: fixed;
            top: 0;
+           right: 0;
+           bottom: 0;
            left: 0;
            height:100%;
            width: 100%;
@@ -116,6 +118,7 @@ function hex2rgba($color, $opacity = false) {
            background: <?php echo $bcg_color; ?>;
            padding: <?php echo $content_padding_tb; ?>px <?php echo $content_padding_lr; ?>px;
            width: 40%;
+           max-height: 100%;
            position: fixed;
            top: 15%;
            left: 50%;
@@ -159,8 +162,8 @@ function hex2rgba($color, $opacity = false) {
        }
        @media only screen and (min-width: 0px) and (max-width: 480px){         
            .overlay-content-<?php echo the_ID(); ?> {
-               width: 96%;
-               margin: 0 2%;
+               width: 92%;
+               margin: 0 0% 0 2%;
                left: 0;
            }
        }

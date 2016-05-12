@@ -1,26 +1,42 @@
 jQuery(document).ready(function(){
 
+var $ = jQuery;    
+
 // function to show our popups
 var whichpopup_id;
+var spb_html_overflow = false;
+
 function showPopup(whichpopup, effect){   
     whichpopup_id = whichpopup;
-    var docHeight = jQuery(document).height(); //grab the height of the page
-    // var scrollTop = jQuery(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling
-    var windowHeight = jQuery(window).height(); //grab the height of the browser window
-    var popUpHeight = jQuery('.overlay-content').height(); //grab the height of the popUp        
-    jQuery('.overlay-bg-'+whichpopup).show().css({'height' : docHeight}); //display your popup background and set height to the page height
-    jQuery('.spb-popup-class-'+whichpopup).show(); //.css({'top': scrollTop+100+'px'}); //show the appropriate popup and set the content 20px from the window top    
-    if (popUpHeight >= windowHeight) {
-    	jQuery('.overlay-content').css({'position': 'absolute', "top": Math.max(0, ((jQuery(window).height() - jQuery(this).outerHeight()) / 2) + jQuery(window).scrollTop()) + "px"});        
+    var docHeight = $(document).height(); //grab the height of the page
+    // var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling
+    var windowHeight = $(window).height(); //grab the height of the browser window
+    var popUpHeight = $('.overlay-content').height(); //grab the height of the popUp        
+    $('.overlay-bg-'+whichpopup).show().css({'height' : docHeight}); //display your popup background and set height to the page height
+    $('.spb-popup-class-'+whichpopup).show(); //.css({'top': scrollTop+100+'px'}); //show the appropriate popup and set the content 20px from the window top       
+
+    var offset_percent = 1.15; // 15%
+
+    var popUpFromTop = popUpHeight * offset_percent;   
+
+    if (popUpFromTop >= windowHeight) {
+    	//$('.overlay-content').css({'position': 'fixed', "top": Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px"});        
+        $('.overlay-content').css({'position': 'fixed', 'top': '0', 'overflow-y': 'scroll'});        
     }
-    jQuery('.spb-popup-class-'+whichpopup).addClass(effect);
+    $('.spb-popup-class-'+whichpopup).addClass(effect);
+
+    $('html').css({'height': '100%', 'overflow': 'hidden'});
+    spb_html_overflow = true;
 }
 // function to close our popups
 var post_id;
 var d_id;
 
 function closePopup(id){ 
-    jQuery('.overlay-bg-'+id+', .overlay-content-'+id).hide(); //hide the overlay     
+    if(spb_html_overflow == true){
+       $('html').css({'overflow': 'scroll'}); 
+    }
+    $('.overlay-bg-'+id+', .overlay-content-'+id).hide(); //hide the overlay     
 }
 
 function on_exit_intent(id, fx){
@@ -46,14 +62,14 @@ function on_delay(id, fx, s){
 
 function on_scroll(id, fx, scroll){
     var fired = 0;  
-    var docHeight = jQuery(document).height();       
+    var docHeight = $(document).height();       
     var percentage = scroll / 100;
             
     var num = parseFloat(docHeight);        
     var val = num - (num * percentage);  
 
-    jQuery(window).scroll(function(){ 
-    var topOfWindow = jQuery(window).scrollTop();       
+    $(window).scroll(function(){ 
+    var topOfWindow = $(window).scrollTop();       
         if(fired == 0){
             if(topOfWindow >= val){
                 d_id = id;
@@ -66,27 +82,27 @@ function on_scroll(id, fx, scroll){
 }
 
 // hide popup when user clicks on close button or if user clicks anywhere outside the container
-jQuery('.overlay-bg').click(function(){
-    var popup_id = jQuery(this).data("id");
+$('.overlay-bg').click(function(){
+    var popup_id = $(this).data("id");
     closePopup(popup_id);
 });
-jQuery('.close-btn').click(function(){
-    var close_id = jQuery(this).data("id");
+$('.close-btn').click(function(){
+    var close_id = $(this).data("id");
     closePopup(close_id);
 }); 
  
 // hide the popup when user presses the esc key
-jQuery(document).keyup(function(e) {
+$(document).keyup(function(e) {
     if (e.keyCode == 27) { // if user presses esc key
         closePopup(whichpopup_id);
     }
 });
 
 
-jQuery( document ).on( 'click', '.show-popup', function() {
-	post_id = jQuery(this).data("id");	
+$( document ).on( 'click', '.show-popup', function() {
+	post_id = $(this).data("id");	
 	
-	jQuery.ajax({
+	$.ajax({
 		url : cookieAjax.ajax_url,
 		type : 'post',
 		data : {
@@ -94,7 +110,7 @@ jQuery( document ).on( 'click', '.show-popup', function() {
 			the_post_id : post_id
 		},
 		success : function( response ) {						
-			//var selectedPopup = jQuery(this).data('showpopup'); //get the corresponding popup to show 
+			//var selectedPopup = $(this).data('showpopup'); //get the corresponding popup to show 
             showPopup(post_id, response[1]);		 
 		}
 
@@ -105,13 +121,11 @@ jQuery( document ).on( 'click', '.show-popup', function() {
 
 
 
-
 var popup_data = []; 
 var popup_data_e = []; 
 var popup_data_s = []; 
 
 var spb_exit_intent = document.getElementsByClassName('spb-exit_intent');
-
 var spb_delay = document.getElementsByClassName('spb-delay');
 var spb_scroll = document.getElementsByClassName('spb-scroll');  
 
@@ -198,7 +212,6 @@ function popup_on_delay(stop,exclude){
         }
     };
 }
-
 
 checkCookie_e();
 checkCookie_d();
