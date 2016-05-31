@@ -43,7 +43,7 @@ function on_exit_intent(id, fx){
     d_id = id;
     var fired_e = 0;
     setTimeout(function(){
-    document.addEventListener("mouseleave", function(e){
+    document.addEventListener("mouseout", function(e){
         if( e.clientY < 0 && fired_e === 0){            
             showPopup(id, fx);
             fired_e = 1;                        
