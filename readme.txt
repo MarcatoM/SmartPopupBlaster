@@ -3,7 +3,7 @@ Contributors: MarinMatosevic
 Donate link: http://marinmatosevic.com/
 Tags: smart, popup, popups, blaster, add, adds, subscribe
 Requires at least: 4.0.0
-Tested up to: 4.6
+Tested up to: 5.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -31,6 +31,7 @@ With this fully-responsive plugin, your pop-ups will look fantastic on every dev
 * Display any shortcode in popup
 
 
+
 == Installation ==
 
 1. Upload `smart-popup-blaster` to the `/wp-content/plugins/` directory
@@ -53,6 +54,20 @@ See help page in popup admin panel
 
 == Changelog ==
 
+= 1.4.0 =
+* Bug fixes
+* php 7.2 support
+* Button shortcode
+
+= 1.3.3 =
+* popup limit fix
+
+= 1.3.2 =
+* Exit intent fix for IE and Firefox
+
+= 1.3.1 =
+* Scroll fix
+
 = 1.3 =
 * Added Exit-Intent popup trigger
 
@@ -68,6 +83,20 @@ See help page in popup admin panel
 
 == Upgrade Notice ==
 
+= 1.4.0 =
+* Bug fixes
+* php 7.2 support
+* Button shortcode
+
+= 1.3.3 =
+* popup limit fix
+
+= 1.3.2 =
+* Exit intent fix for IE and Firefox
+
+= 1.3.1 =
+* Scroll fix
+
 = 1.3 =
 * Added Exit-Intent popup trigger
 
@@ -80,10 +109,7 @@ See help page in popup admin panel
 = 1.0. =
 * First Launch
 
+ 
 == Additional Info ==
 
 **Idea Behind / Philosophy:** Just a little leightweight plugin for all WordPress users out there to make their popups look better. I'll try to add more plugin/theme support and more plugin option over time. So stay tuned.
-
-== Credits ==
-* Thanx to [MarcatoM](http://marcatom.xyz) for the development! 
-

@@ -120,7 +120,6 @@ $( document ).on( 'click', '.show-popup', function() {
 });
 
 
-
 var popup_data = []; 
 var popup_data_e = []; 
 var popup_data_s = []; 
