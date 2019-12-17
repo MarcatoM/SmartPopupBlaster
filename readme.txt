@@ -1,9 +1,9 @@
 === Smart PopUp Blaster ===
 Contributors: MarinMatosevic
-Donate link: http://marinmatosevic.com/
+Donate link: https://devnet.hr
 Tags: smart, popup, popups, blaster, add, adds, subscribe
 Requires at least: 4.0.0
-Tested up to: 5.2
+Tested up to: 5.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -54,6 +54,12 @@ See help page in popup admin panel
 
 == Changelog ==
 
+= 1.4.2 =
+* Button bug fix
+
+= 1.4.1 =
+* Button bug fix
+
 = 1.4.0 =
 * Bug fixes
 * php 7.2 support
@@ -82,6 +88,12 @@ See help page in popup admin panel
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.4.2 =
+* Button bug fix
+
+= 1.4.1 =
+* Button bug fix
 
 = 1.4.0 =
 * Bug fixes

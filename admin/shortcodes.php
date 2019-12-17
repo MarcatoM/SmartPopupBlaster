@@ -4,8 +4,8 @@ function spb_button($atts)
 {
 
     $atts = shortcode_atts(array(
-        'id' => null,
-        'text' => 'Click Me!',
+        'id'    => null,
+        'text'  => 'Click Me!',
         'class' => '',
     ), $atts, 'spb-button');
 

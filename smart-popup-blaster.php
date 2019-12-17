@@ -3,9 +3,9 @@
 Plugin Name: Smart PopUp Blaster
 Plugin URI: http://wordpress.org/plugins/smart-popup-blaster/
 Description: Elegant & easy to use popup plugin, fully responsive, highly customizable, scroll, click & time-delay triggered popups, Add forms, social media boxes, videos & more.
-Author: Marin Matosevic
-Version: 1.4.0
-Author URI: http://marinmatosevic.com
+Author: Devnet
+Version: 1.4.2
+Author URI: https://devnet.hr
 Text Domain: smart-popup-blaster
  */
 
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 
 include 'admin/add_cpt.php';
 include 'admin/admin-panel.php';
-include 'admin/shortcode.php';
+include 'admin/shortcodes.php';
 
 function spb_styles_and_scripts()
 {
@@ -94,7 +94,6 @@ function spb_add_action_plugin($actions, $plugin_file)
         $add = array('add' => '<a href="post-new.php?post_type=spb">' . __('Add PopUp', 'General') . '</a>');
 
         $actions = array_merge($add, $actions);
-
     }
     return $actions;
 }
